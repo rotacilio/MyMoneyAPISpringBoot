@@ -1,29 +1,30 @@
 package br.com.ciadasbolsas.CiaDasBolsas.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "tb_categories")
+@Table(name = "tb_brands")
 @SequenceGenerator(
-        name = Category.SEQUENCE_NAME,
-        sequenceName = Category.SEQUENCE_NAME,
+        name = Brand.SEQUENCE_NAME,
+        sequenceName = Brand.SEQUENCE_NAME,
         allocationSize = 1)
-public class Category implements Serializable {
+public class Brand implements Serializable {
 
-    public static final String SEQUENCE_NAME = "seq_tb_categories";
+    public static final String SEQUENCE_NAME = "seq_tb_brands";
 
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = SEQUENCE_NAME)
-    @Column(name = "cate_id", nullable = false)
+    @Column(name = "bran_id", nullable = false)
     private Long id;
 
-    @NotBlank(message = "O nome da categoria não pode ser vazio")
-    @Column(name = "cate_name", nullable = false, unique = true)
+    @Column(name = "bran_name", length = 50, nullable = false)
     private String name;
+
+    @Column(name = "bran_image")
+    private String image;
 
     public Long getId() {
         return id;
@@ -41,14 +42,23 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Category() {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Brand() {
     }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Brand{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
