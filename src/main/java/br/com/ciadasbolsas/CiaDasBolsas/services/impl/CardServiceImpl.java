@@ -38,4 +38,8 @@ public class CardServiceImpl implements CardService {
         oldCard.setUpdatedAt(new Date());
         return mCardRepository.save(oldCard);
     }
+
+    private void verifyDuplicatedName(String cardName) {
+
+    }
 }

@@ -6,10 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,6 +20,7 @@ public class CardsController {
     private CardService mCardService;
 
     @ApiOperation(value = "Criar novo cartão")
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST)
     public Card createNewCard(
             @ApiParam(value = "Cartão a ser criado", required = true)
@@ -31,12 +29,14 @@ public class CardsController {
     }
 
     @ApiOperation(value = "Listar todos os cartões")
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET)
     public List<Card> findAll() {
         return mCardService.findAll();
     }
 
     @ApiOperation(value = "Atualizar cartão")
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT)
     public Card updateCard(
             @ApiParam(value = "Cartão a ser atualizado", required = true)
